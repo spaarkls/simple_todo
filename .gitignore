@@ -1,0 +1,5 @@
+.env
+.vscode
+*.o
+task_tracker
+a.out
