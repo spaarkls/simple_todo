@@ -1,0 +1,5 @@
+frontend
+.git
+docker-compose.yaml
+.env
+node_modules
