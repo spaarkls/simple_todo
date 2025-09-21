@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <crow.h>
+#include <crow/middlewares/cors.h>
 
 #include "database/database.h"
 #include "TaskService/task_service.h"
@@ -15,7 +16,11 @@ int main(void) {
             " host=" + std::string(std::getenv("DB_HOST")) +
             " port=" + std::string(std::getenv("DB_PORT"));
 
-    crow::SimpleApp app;
+    crow::App<crow::CORSHandler> app;
+    auto &cors = app.get_middleware<crow::CORSHandler>();
+    cors.global()
+        .origin("*")
+        .methods("GET"_method, "POST"_method, "DELETE"_method, "PUT"_method);
     std::cout << conn << std::endl;
     DataBase db(conn);
     TaskService ts(db);

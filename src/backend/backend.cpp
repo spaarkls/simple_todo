@@ -130,7 +130,7 @@ namespace {
 
 }
 
-void Backend::setup_routes(crow::SimpleApp& app) {
+void Backend::setup_routes(crow::App<crow::CORSHandler>& app) {
     CROW_ROUTE(app, "/tasks").methods("GET"_method)
     ([this](){
         return handle_get_all_task(ts);
